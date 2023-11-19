@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include <string.h>
 
-int main (){
+int main (int argc, char *argv[]){
     FILE *archivo;
-    archivo = fopen("base de datos.txt","w");
-    char *texto= "JVDB";
-    fputs(texto, archivo);
+    archivo = fopen("base de datos.txt","a");
+    char *texto= argv[1];
+    fputs(strcat(texto, "\n"), archivo);
     fclose(archivo);
     return 0;   
 }
