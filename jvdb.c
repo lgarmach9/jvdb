@@ -5,13 +5,17 @@ int main (int argc, char *argv[]){
     FILE *archivo;
     char *operacion= argv[1];
     char *basededatos= argv[2];
-    char *nombrearchivo= argv[3];
+    char *coleccion= argv[3];
+    char *documento= argv[4];
     char ruta[100];
     strcpy(ruta,basededatos);
-    strcat(ruta,"-");
-    strcat(ruta,nombrearchivo);
-    strcat(ruta,".txt");
+    strcat(ruta,"/");
+    strcat(ruta,coleccion);
+    strcat(ruta,"/");
+    strcat(ruta,documento);
+    strcat(ruta,".json");
     
+    printf("La ruta es: %s", ruta);
     
     if(strcmp(operacion, "select")==0){
         archivo = fopen(ruta,"r");
@@ -22,13 +26,14 @@ int main (int argc, char *argv[]){
         }
         
     }else if(strcmp(operacion,"insert")==0){        
-        archivo = fopen(ruta,"a");
-        char *texto= argv[4];
+        archivo = fopen(ruta,"w");
+        char *texto= argv[5];
         fputs(strcat(texto, "\n"), archivo);
         fclose(archivo);
+
     }else{
         printf("operacion no válida");
     }
     
-    return 0;   
+    return 0;  
 }
